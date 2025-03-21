@@ -124,15 +124,15 @@ app.post('/carrier_service', async (req, res) => {
   // Loop through each item to accumulate dimensions and weight
   for (const item of items) {
     // Get the built-in weight from the Shopify item object
-    const weight = item.weight || 0; // Default to 0 if not found
-    const height = item?.metafields?.height || 0; // Default to 0 if not found
-    const length = item?.metafields?.length || 0; // Default to 0 if not found
-    const width = item?.metafields?.width || 0;   // Default to 0 if not found
-    console.log('weighttt:', weight);
-    console.log('heighttt:', height);
-    console.log('lengthtt:', length);
-    console.log('widthtt:', width);
-    console.log('quantitytt:', item.quantity);
+    const weight = item.weight || 2; // Default to 0 if not found
+    const height = item?.metafields?.height || 3; // Default to 0 if not found
+    const length = item?.metafields?.length || 5; // Default to 0 if not found
+    const width = item?.metafields?.width || 5;   // Default to 0 if not found
+    // console.log('weighttt:', weight);
+    // console.log('heighttt:', height);
+    // console.log('lengthtt:', length);
+    // console.log('widthtt:', width);
+    // console.log('quantitytt:', item.quantity);
 
     totalWeight += weight * item.quantity; // Accumulate total weight
     totalHeight = Math.max(totalHeight, height); // Get maximum height
@@ -157,13 +157,13 @@ app.post('/carrier_service', async (req, res) => {
     };
 
     // Log the payload being sent to the shipping API
-    console.log('Sending request to Shipping API:', JSON.stringify(shippingPayload, null, 2));
+    console.log('Sending request to Shipping API:', JSON.stringify(shippingPayload));
 
     // Call your custom shipping API
     const shippingResponse = await axios.post('https://my-apirn.onrender.com/calculate-shipping', shippingPayload);
 
     // Log the response received from the shipping API
-    console.log('Received response from Shipping API:', JSON.stringify(shippingResponse.data, null, 2));
+    // console.log('Received response from Shipping API:', JSON.stringify(shippingResponse.data, null, 2));
 
     // Check if the API call was successful
     if (shippingResponse.data.status !== 1) {
