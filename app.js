@@ -122,6 +122,7 @@ app.post("/carrier_service", async (req, res) => {
 
   // Loop through each item to accumulate dimensions and weight
   for (const item of items) {
+    console.log("item:", item);
     // Get the built-in weight from the Shopify item object
     const weight = item.weight || 2; // Default to 0 if not found
     const height = item?.metafields?.height || 3; // Default to 0 if not found
