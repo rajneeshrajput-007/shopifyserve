@@ -98,18 +98,18 @@ app.use(bodyParser.json());
 // Endpoint to handle carrier service requests from Shopify
 app.post("/carrier_service", async (req, res) => {
   // Log that a request has been received
-  console.log(
-    "Received /carrier_service request:",
-    JSON.stringify(req.body, null, 2)
-  );
+  // console.log(
+  //   "Received /carrier_service request:",
+  //   JSON.stringify(req.body, null, 2)
+  // );
 
   const { rate } = req.body;
   const destination = rate.destination;
   const items = rate.items;
 
   // Log extracted destination and items
-  console.log("Destination:", destination);
-  console.log("Items:", items);
+  // console.log("Destination:", destination);
+  // console.log("Items:", items);
 
   // Initialize variables to store dimensions and weight
   let totalWeight = 0;
@@ -187,10 +187,10 @@ app.post("/carrier_service", async (req, res) => {
     const shippingServices = shippingResponse.data.data.shippingServices;
 
     // Log the extracted shipping services
-    console.log(
-      "Shipping Services:",
-      JSON.stringify(shippingServices, null, 2)
-    );
+    // console.log(
+    //   "Shipping Services:",
+    //   JSON.stringify(shippingServices, null, 2)
+    // );
 
     // Transform the shippingServices object into an array
     const shippingRates = Object.keys(shippingServices).map((code) => {
@@ -204,10 +204,10 @@ app.post("/carrier_service", async (req, res) => {
     });
 
     // Log the formatted shipping rates to be sent to Shopify
-    console.log(
-      "Formatted Shipping Rates:",
-      JSON.stringify(shippingRates, null, 2)
-    );
+    // console.log(
+    //   "Formatted Shipping Rates:",
+    //   JSON.stringify(shippingRates, null, 2)
+    // );
 
     // Send the shipping rates back to Shopify
     res.json({ rates: shippingRates });
